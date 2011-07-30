@@ -31,8 +31,8 @@
   <name>my-app-ria - Flex Module</name>
 
   <build>
-    <sourceDirectory>src/main/flex</sourceDirectory>
-    <testSourceDirectory>src/test/flex</testSourceDirectory>
+    <sourceDirectory>src/main</sourceDirectory>
+    <testSourceDirectory>src/test</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.sonatype.flexmojos</groupId>
@@ -64,10 +64,17 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
+    <!--<dependency>
       <groupId>org.sonatype.test</groupId>
       <artifactId>swc</artifactId>
       <version>1.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>com.asfusion.mate</groupId>
+      <artifactId>mate-framework</artifactId>
+      <version>0.8.9</version>
       <type>swc</type>
     </dependency>
   </dependencies>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="955" minHeight="600" xmlns:views="com.myapp.listfile.views.*" xmlns:maps="com.myapp.listfile.maps.*">
+	<mx:Label x="42" y="43" text="Hi This is Home Page" enabled="true" fontWeight="bold" fontStyle="italic" textDecoration="underline" color="#4FE2E0" fontSize="18"/>
+	<maps:ListFileEventMap />
+	<views:listFiles />
+</mx:Application>
