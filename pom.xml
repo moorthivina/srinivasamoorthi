@@ -33,9 +33,27 @@
       <id>flexframework</id>
       <url>http://repository.sonatype.org/content/groups/flexgroup/</url>
     </repository>
+
+   <repository>
+      <id>mate-repository</id>
+      <url>http://mate-framework.googlecode.com/svn/trunk/maven</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>false</enabled></snapshots>
+   </repository>
   </repositories>
 
 <pluginRepositories>
+<!--	<pluginRepository>
+      <id>mate-repository</id>
+      <url>http://mate-framework.googlecode.com/svn/trunk/maven</url>
+      <releases>
+		<enabled>true</enabled>
+	  </releases>
+      <snapshots>
+		<enabled>false</enabled>
+	  </snapshots>
+	</pluginRepository>
+-->
 	<pluginRepository>
 	<id>flexframework</id>
 	<url>http://repository.sonatype.org/content/groups/flexgroup/</url>

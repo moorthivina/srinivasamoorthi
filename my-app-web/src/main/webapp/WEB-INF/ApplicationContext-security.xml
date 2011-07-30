@@ -27,7 +27,9 @@
 	</security:global-method-security>
 
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/swf-1.0-SNAPSHOT.swf"
+		<security:intercept-url pattern="/my-app-ria-1.0-SNAPSHOT.swf"
+			access="ROLE_ANONYMOUS" />
+		<security:intercept-url pattern="/messagebroker/*"
 			access="ROLE_ANONYMOUS" />
 		<security:intercept-url pattern="/login/**"
 			access="ROLE_ANONYMOUS" />

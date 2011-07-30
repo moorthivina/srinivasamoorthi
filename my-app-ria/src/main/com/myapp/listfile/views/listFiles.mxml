@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" xmlns:maps="com.myapp.listfile.maps.*">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.myapp.listfile.model.ListFilesModel;
+
+			[Bindable]
+			public var model:ListFilesModel;
+			
+			protected function onClick(event:MouseEvent):void
+			{
+				model.list();
+			}
+
+		]]>
+	</mx:Script>
+	
+	<mx:Button x="21" y="10" label="Button" click="onClick(event)" />
+	<mx:DataGrid x="21" y="50" width="369" id="fileList" editable="false" enabled="true" dataProvider="{model.fileList}">
+		<mx:columns>
+			<mx:DataGridColumn headerText="ID" dataField="id"/>
+			<mx:DataGridColumn headerText="Name" dataField="fileName"/>
+			<mx:DataGridColumn headerText="Path" dataField="filePath"/>
+			<mx:DataGridColumn headerText="Updated At" dataField="updateTime"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Module>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EventMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://mate.asfusion.com/">
+    <mx:Script>
+    	<![CDATA[
+    		import mx.events.FlexEvent;
+    		import com.myapp.listfile.model.manager.ListFilesManager;
+    		import com.myapp.listfile.event.ListFilesEvent;
+    		import com.myapp.listfile.views.listFiles;
+    		import com.myapp.listfile.model.ListFilesModel;
+    	]]>
+    </mx:Script>
+	<!-- FlexEvent.PREINITIALIZE __________________________________________________________________ -->
+    <EventHandlers type="{FlexEvent.PREINITIALIZE}">
+        <ObjectBuilder generator="{ ListFilesModel }" constructorArguments="{ scope.dispatcher }" />
+    </EventHandlers>
+
+
+	<mx:RemoteObject id="viewResultService"
+                     endpoint="http://localhost:8080/my-app/messagebroker/amf"
+                     destination="viewResultService"/>
+ <!--{props.host}:{props.port}/{props.webcontext}-->
+    <EventHandlers type="{ListFilesEvent.LIST}" debug="true">
+        <RemoteObjectInvoker instance="{viewResultService}" method="getList" arguments="{[1, 10]}">
+            <resultHandlers>
+                <MethodInvoker generator="{ListFilesManager}" method="updateList" arguments="{resultObject}"/>
+            </resultHandlers>
+        </RemoteObjectInvoker>
+    </EventHandlers>
+
+	<!-- <EventHandlers type="{ ListFilesEvent.LIST }">
+        <MethodInvoker generator="{ NavigationManager }" method="updatePath" arguments="{ Navigation.EMPLOYEE_DETAIL }"/>
+    </EventHandlers>
+-->
+	
+	<Injectors target="{ listFiles }" >
+        <PropertyInjector targetKey="model" source="{ ListFilesModel }"/>
+    </Injectors>
+    
+    <Injectors target="{ ListFilesModel }" >
+        <PropertyInjector targetKey="fileList" source="{ ListFilesManager }" sourceKey="fileList"/>
+    </Injectors>
+</EventMap>
