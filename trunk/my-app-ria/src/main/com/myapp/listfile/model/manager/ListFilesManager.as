@@ -10,7 +10,8 @@ package com.myapp.listfile.model.manager
 	
 	public class ListFilesManager extends EventDispatcher
 	{
-		private var _fileList:ArrayCollection;
+
+		public var _fileList:ArrayCollection;
 		
 		[Bindable (Event="fileListChanged")]
         public function get fileList():ArrayCollection
@@ -27,10 +28,9 @@ package com.myapp.listfile.model.manager
 			Alert.show("Result returned " + fileList.length);
 			var fileItem:FileList;
 			var i:int;
-			for(i=0;fileList.length;i=i+1){
-				Alert.show("inside for " + i);
+			for(i=0;i<fileList.length;i=i+1){
+				Alert.show("1. inside for " + i);
 				fileItem = fileList.getItemAt(i) as FileList;
-				Alert.show(fileItem.fileName);
 				_fileList.addItem(fileItem);
 			}
 			dispatchEvent(new Event("fileListChanged"));

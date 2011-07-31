@@ -2,6 +2,7 @@ package com.myapp.listfile.model
 {
 	import com.myapp.listfile.event.ListFilesEvent;
 	
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
@@ -10,8 +11,8 @@ package com.myapp.listfile.model
 
 	public class ListFilesModel extends EventDispatcher
 	{
-		
 		public var _fileList:ArrayCollection;
+		
 		[Bindable (event="fileListChanged")]
         public function get fileList():ArrayCollection
         {
@@ -22,6 +23,7 @@ package com.myapp.listfile.model
 		public function set fileList(fileList:ArrayCollection):void
         {
             this._fileList = fileList;
+            dispatchEvent(new Event("fileListChanged"));
         }
 
 		/** This property is injected by the application. */
