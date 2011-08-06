@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" xmlns:maps="com.myapp.listfile.maps.*">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.myapp.listfile.maps.*">
 	
 	<mx:Script>
 		<![CDATA[
@@ -14,16 +14,25 @@
 				model.list();
 			}
 
+			public function dateFormatter(item:Object, column:DataGridColumn):String{
+  				var result:String = "MOORTHI";
+  				var itemDt:Date = item.updatetime as Date;
+   				result = dateFormat.format(itemDt);
+  				return result;
+			}
+ 
 		]]>
 	</mx:Script>
 	
+	<mx:DateFormatter id="dateFormat" formatString="EEEE, MMM. D, YYYY at L:NN A" />
 	<mx:Button x="21" y="10" label="Button" click="onClick(event)" />
-	<mx:DataGrid x="21" y="50" width="369" id="fileList_id" editable="false" enabled="true" dataProvider="{model.fileList}">
+	<mx:DataGrid x="65" y="116" width="913" id="fileList_id" editable="false" enabled="true" 
+		dataProvider="{model.fileList}" >
 		<mx:columns>
-			<mx:DataGridColumn headerText="ID" dataField="id"/>
-			<mx:DataGridColumn headerText="Name" dataField="fileName"/>
-			<mx:DataGridColumn headerText="Path" dataField="filePath"/>
-			<mx:DataGridColumn headerText="Updated At" dataField="updateTime"/>
+			<mx:DataGridColumn headerText="ID" dataField="id" width="25" />
+			<mx:DataGridColumn headerText="Name" dataField="fileName" width="25" />
+			<mx:DataGridColumn headerText="Path" dataField="filePath" width="25" />
+			<mx:DataGridColumn headerText="Updated At" dataField="updateTime" labelFunction="dateFormatter"  width="25" />
 		</mx:columns>
 	</mx:DataGrid>
 </mx:Module>

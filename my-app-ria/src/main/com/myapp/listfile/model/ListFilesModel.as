@@ -7,7 +7,6 @@ package com.myapp.listfile.model
 	import flash.events.IEventDispatcher;
 	
 	import mx.collections.ArrayCollection;
-	import mx.controls.Alert;
 
 	public class ListFilesModel extends EventDispatcher
 	{
@@ -16,7 +15,6 @@ package com.myapp.listfile.model
 		[Bindable (event="fileListChanged")]
         public function get fileList():ArrayCollection
         {
-        	Alert.show("Returned to model's filelist change event");
             return _fileList;
         }
 

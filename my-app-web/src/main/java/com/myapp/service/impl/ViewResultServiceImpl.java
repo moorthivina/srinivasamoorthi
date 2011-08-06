@@ -18,7 +18,6 @@ public class ViewResultServiceImpl implements ViewResultsService {
 	private ViewDao dao;
 
 	public List<Files> getList(int pageNo, int size){
-		System.out.println("am at serv layer getList meth ");
 		return dao.getFiles((pageNo-1)*size, size);
 	}
 

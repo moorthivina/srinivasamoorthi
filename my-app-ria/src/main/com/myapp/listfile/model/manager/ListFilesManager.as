@@ -6,7 +6,6 @@ package com.myapp.listfile.model.manager
 	import flash.events.EventDispatcher;
 	
 	import mx.collections.ArrayCollection;
-	import mx.controls.Alert;
 	
 	public class ListFilesManager extends EventDispatcher
 	{
@@ -25,12 +24,14 @@ package com.myapp.listfile.model.manager
 		
 		public function updateList(fileList:ArrayCollection ):void {
 			_fileList = new ArrayCollection();
-			Alert.show("Result returned " + fileList.length);
 			var fileItem:FileList;
 			var i:int;
-			for(i=0;i<fileList.length;i=i+1){
-				Alert.show("1. inside for " + i);
-				fileItem = fileList.getItemAt(i) as FileList;
+			for each(var item:Object in fileList){
+				fileItem = new FileList();
+				fileItem.filePath = item.filePath;
+				fileItem.fileName = item.fileName;
+				fileItem.id = item.id;
+				fileItem.updatetime = item.updatetime;
 				_fileList.addItem(fileItem);
 			}
 			dispatchEvent(new Event("fileListChanged"));
