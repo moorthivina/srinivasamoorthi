@@ -9,7 +9,7 @@ package com.myapp.listfile.vos
 		public var id:int;
 		public var fileName:String;
 		public var filePath:String;
-		public var updatetime:String;
+		public var updatetime:Date;
 		
 		public function set setId(id:int):void {
 			this.id = id;
@@ -23,7 +23,7 @@ package com.myapp.listfile.vos
 			this.filePath = filePath;
 		}
 		
-		public function set setUpdateTime(updateTime:String):void {
+		public function set setUpdateTime(updateTime:Date):void {
 			this.updatetime = updateTime;
 		}
 	}
