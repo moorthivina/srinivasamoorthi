@@ -26,6 +26,7 @@
 	
 	<mx:DateFormatter id="dateFormat" formatString="EEEE, MMM. D, YYYY at L:NN A" />
 	<mx:Button x="21" y="10" label="Button" click="onClick(event)" />
+	
 	<mx:DataGrid x="65" y="116" width="913" id="fileList_id" editable="false" enabled="true" 
 		dataProvider="{model.fileList}" >
 		<mx:columns>

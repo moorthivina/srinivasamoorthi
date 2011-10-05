@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mate:EventMap 
+    xmlns:mate="http://mate.asfusion.com/" 
+    xmlns:mx="http://www.adobe.com/2006/mxml">
+<!-- <EventMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://mate.asfusion.com/"> -->
+    <mx:Script>
+    	<![CDATA[
+    		import com.myapp.common.views.HeaderView;
+    		import mx.events.FlexEvent;
+    		import com.myapp.common.event.ContentEvent;
+    		import com.myapp.common.model.ContentModel;
+    		import com.myapp.common.model.manager.ContentManager;
+    		import com.layout.MainLayout;
+    	]]>
+    </mx:Script>
+    
+	<!-- FlexEvent.PREINITIALIZE __________________________________________________________________ -->
+    <mate:EventHandlers type="{FlexEvent.PREINITIALIZE}">
+        <mate:ObjectBuilder generator="{ContentModel}" constructorArguments="{ scope.dispatcher }" />
+    </mate:EventHandlers>
+
+    <mate:EventHandlers type="{ContentEvent.CRAWLPAGE}" debug="true">
+    	<mate:MethodInvoker generator="{ContentManager}" method="loadModule" arguments="{ContentEvent.CRAWLPAGE}" />
+    </mate:EventHandlers>
+    
+    <mate:Injectors target="{MainLayout}" >
+        <mate:PropertyInjector targetKey="model" source="{ ContentModel }"/>
+        <mate:PropertyInjector targetKey="loadModule" source="{ ContentModel }" sourceKey="urlChange"/>
+    </mate:Injectors>
+    
+    <mate:Injectors target="{ContentModel}" >
+        <mate:PropertyInjector targetKey="modelUrl" source="{ ContentManager }" sourceKey="url" />
+    </mate:Injectors>
+
+    <mate:Injectors target="{HeaderView}" >
+        <mate:PropertyInjector targetKey="model" source="{ ContentModel }"/>
+    </mate:Injectors>
+
+</mate:EventMap>

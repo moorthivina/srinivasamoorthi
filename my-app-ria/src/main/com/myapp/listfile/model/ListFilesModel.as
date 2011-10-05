@@ -36,5 +36,10 @@ package com.myapp.listfile.model
 			var event:ListFilesEvent = new ListFilesEvent(ListFilesEvent.LIST);
 			_dispatcher.dispatchEvent(event);
 		}
+		
+		public function startCrawl():void {
+			var event:ListFilesEvent = new ListFilesEvent(ListFilesEvent.STARTCRAWL);
+			_dispatcher.dispatchEvent(event);
+		}
 	}
 }

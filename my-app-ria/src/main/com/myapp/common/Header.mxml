@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" 
+	xmlns:views="com.myapp.common.views.*">
+	<views:HeaderView  width="100%" backgroundColor="#22319C"/>
+</mx:Canvas>

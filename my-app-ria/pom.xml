@@ -31,7 +31,7 @@
   <name>my-app-ria - Flex Module</name>
 
   <build>
-    <sourceDirectory>src/main</sourceDirectory>
+  	<sourceDirectory>src/main</sourceDirectory>
     <testSourceDirectory>src/test</testSourceDirectory>
     <plugins>
       <plugin>
@@ -43,8 +43,78 @@
           <locales>
             <locale>en_US</locale>
           </locales>
+		  <moduleFiles>
+	         <module>../../target/classes/generated-sources/com_myapp_crawler_Crawler.mxml</module>
+    	  </moduleFiles>
         </configuration>
       </plugin>
+
+	  <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+	        <execution>
+                <id>Copy and rename module files</id>
+                <phase>generate-sources</phase>
+                <configuration>
+                    <tasks>
+                        <copy todir="${project.build.outputDirectory}/generated-sources" verbose="true" overwrite="true">
+                            <fileset dir="${project.build.sourceDirectory}">
+                                <include name="**/*.mxml" />
+                            </fileset>
+                            <filtermapper>
+                                <replacestring from="${file.separator}" to="_"/>
+                            </filtermapper>
+                        </copy>
+                    </tasks>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+	        </execution>
+        </executions>
+	  </plugin>
+	  
+	  <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>Refactor module files</id>
+                <phase>package</phase>
+                <configuration>
+                    <tasks>
+                        <copy todir="${project.build.directory}" verbose="true" overwrite="true">
+                            <fileset dir="${project.build.directory}">
+                                <include name="${project.artifactId}-${project.version}-*.swf"/>
+                            </fileset>
+                            <mapper>
+                                <chainedmapper>
+                                    <mapper type="glob" from="${project.artifactId}-${project.version}-*.swf" to="*.swf" />
+                                    <filtermapper>
+                                        <replacestring from="_" to="${file.separator}"/>
+                                    </filtermapper>
+                                </chainedmapper>
+                            </mapper>
+                        </copy>
+                    </tasks>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+            <execution>
+                <id>compile</id>
+                <phase>verify</phase>
+                <configuration>
+                    <tasks>
+                        <delete file="${project.artifactId}-${project.version}-*.swf" includeemptydirs="true"/>
+                    </tasks>
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+        </executions>
+	  </plugin>
     </plugins>
   </build>
 
@@ -64,13 +134,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!--<dependency>
-      <groupId>org.sonatype.test</groupId>
-      <artifactId>swc</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>swc</type>
-    </dependency>
-    -->
     <dependency>
       <groupId>com.asfusion.mate</groupId>
       <artifactId>mate-framework</artifactId>

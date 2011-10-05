@@ -26,14 +26,13 @@
 		secured-annotations="enabled">
 	</security:global-method-security>
 
-	<security:http auto-config="true">
-		<security:intercept-url pattern="/my-app-ria-1.0-SNAPSHOT.swf"
-			access="ROLE_ANONYMOUS" />
-		<security:intercept-url pattern="/messagebroker/*"
+	<security:http auto-config="false">
+		<!-- <security:intercept-url pattern="/messagebroker/*"
 			access="ROLE_ANONYMOUS" />
 		<security:intercept-url pattern="/login/**"
-			access="ROLE_ANONYMOUS" />
-		<security:intercept-url pattern="/**" access="ROLE_USER" />
+			access="ROLE_ANONYMOUS" /> -->
+		<!-- <security:intercept-url pattern="/**" access="ROLE_USER" /> -->
+		<security:intercept-url pattern="/flex/**" access="ROLE_USER" />
 
 		<security:form-login login-page="/login/login.html"
 			authentication-failure-url="/login/login.html"

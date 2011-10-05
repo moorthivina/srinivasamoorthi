@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocalEventMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://mate.asfusion.com/">
+    <mx:Script>
+    	<![CDATA[
+    		import com.myapp.crawler.views.CrawlerView;
+    		import com.myapp.crawler.Crawler;
+    		import mx.events.FlexEvent;
+    		import com.myapp.crawler.event.CrawlerEvent;
+    		import com.myapp.crawler.model.CrawlerModel;
+    	]]>
+    </mx:Script>
+
+	<!-- FlexEvent.PREINITIALIZE __________________________________________________________________ -->
+    <EventHandlers type="{FlexEvent.PREINITIALIZE}">
+        <ObjectBuilder generator="{ CrawlerModel }" constructorArguments="{ scope.dispatcher }" />
+    </EventHandlers>
+
+
+	<mx:RemoteObject id="fileCrawler"
+                     endpoint="http://localhost:8080/my-app/messagebroker/amf"
+                     destination="fileCrawler"/>
+ 
+    <EventHandlers type="{CrawlerEvent.STARTCRAWL}" debug="true">
+        <RemoteObjectInvoker instance="{fileCrawler}" method="startCrawl" >
+        </RemoteObjectInvoker>
+    </EventHandlers>
+    
+    <Injectors target="{ CrawlerView }" >
+        <PropertyInjector targetKey="model" source="{ CrawlerModel }"/>
+    </Injectors>
+</LocalEventMap>
