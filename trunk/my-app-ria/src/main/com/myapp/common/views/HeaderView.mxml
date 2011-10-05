@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" >
+	<mx:Script>
+		<![CDATA[
+			import mx.events.MenuEvent;
+			import com.myapp.common.model.ContentModel;
+			import mx.controls.Alert;
+
+			[Bindable]
+			public var model:ContentModel;
+
+			protected function loadScreen(event:MenuEvent):void {
+				if (event.item.@data != "top") {
+                    Alert.show("Label: " + event.item.@label + "\n" + 
+                        "Data: " + event.item.@data, "Clicked menu item");
+                    switch(event.item.@data) {
+					  case "1":
+					    Alert.show("Start Crawl called ")
+					    break;
+					  case "2":
+					    Alert.show("DUMMY called ")
+					    break;
+					}
+                } 
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%">
+	<mx:MenuBar id="myMenuBar" labelField="@label" height="30" width="100%" itemClick="loadScreen(event)">
+		<mx:XMLList>
+		<menuitem label="Start Crawl" data="top">
+			<menuitem label="Start Crawl" data="1"/>
+		</menuitem>
+
+		<menuitem label=" DUMMY " data="2"/>
+		
+		<!-- <menuitem label="MenuItem C"/>
+		<menuitem label="MenuItem D" >
+		    <menuitem label="SubMenuItem D-1" 
+		        type="radio" groupName="one"/>
+		    <menuitem label="SubMenuItem D-2" 
+		        type="radio" groupName="one"
+		        selected="true"/>
+		    <menuitem label="SubMenuItem D-3" 
+		        type="radio" groupName="one"/>
+		</menuitem> -->
+		</mx:XMLList>
+	</mx:MenuBar>
+	</mx:VBox> 
+</mx:Canvas>

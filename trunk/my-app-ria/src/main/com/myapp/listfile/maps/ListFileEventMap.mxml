@@ -26,7 +26,7 @@
             </resultHandlers>
         </RemoteObjectInvoker>
     </EventHandlers>
-
+    
 	<!-- <EventHandlers type="{ ListFilesEvent.LIST }">
         <MethodInvoker generator="{ NavigationManager }" method="updatePath" arguments="{ Navigation.EMPLOYEE_DETAIL }"/>
     </EventHandlers>

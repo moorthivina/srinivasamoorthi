@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
+	layout="absolute" autoLayout="true" 
+	xmlns:views="com.myapp.crawler.views.*" 
+	xmlns:maps="com.myapp.crawler.maps.*" backgroundColor="#0A0909" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			public function init():void {
+				Alert.show("At Crawler ");
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<views:CrawlerView x="0" y="0" backgroundColor="#0E0F16"/>
+	<maps:CrawlerEventMap dispatcher="{this}" />
+
+</mx:Module>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:common="com.myapp.common.*" creationComplete="onLoad()" >
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ModuleEvent;
+			import mx.events.FlexEvent;
+			import com.myapp.utils.IModule;
+			import mx.controls.Alert;
+			import com.myapp.common.model.ContentModel;
+
+			[Bindable]
+			public var model:ContentModel;
+			
+			public function onLoad():void {
+				model.addEventListener("urlChange", onUrlChange);
+				model.initiate();
+			}
+			
+			public function onUrlChange(event:Event):void {
+				loader.unloadModule();
+				loader.url = "";
+				loader.url = model.url;
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox backgroundColor="#D4EECD" width="100%" height="100%">
+	<mx:Panel width="100%" height="100%">
+		<common:Header width="100%" />
+		<mx:ModuleLoader id="loader" width="100%" height="100%"
+			url="com/myapp/crawler/Crawler.swf" backgroundColor="#04EEC0" 
+			applicationDomain="{ApplicationDomain.currentDomain} "/>
+	</mx:Panel>
+	</mx:VBox>
+</mx:Canvas>

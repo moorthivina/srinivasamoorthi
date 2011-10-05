@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
-	layout="absolute" autoLayout="true"  
-	xmlns:views="com.myapp.listfile.views.*" 
-	xmlns:maps="com.myapp.listfile.maps.*" >
+	layout="absolute" autoLayout="true" xmlns:layout1="com.layout.*" xmlns:maps="com.myapp.common.maps.*">
+<maps:ContentEventMap />
+<mx:VBox width="100%" height="100%">
 	<mx:Label text="Hi This is Home Page" enabled="true" fontWeight="bold" fontStyle="italic" textDecoration="underline" color="#4FE2E0" fontSize="18" x="270" y="24"/>
-	<maps:ListFileEventMap />
-	<views:listFiles />
+	<layout1:MainLayout height="100%" width="100%" backgroundColor="#F2DADA"/>
+</mx:VBox>	
 </mx:Application>

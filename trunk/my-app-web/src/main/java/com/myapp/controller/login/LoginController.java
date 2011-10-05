@@ -1,6 +1,5 @@
 package com.myapp.controller.login;
 
-import javax.security.auth.login.AppConfigurationEntry;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
